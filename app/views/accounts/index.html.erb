@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="panel panel-default">
+    <div class="panel-body">Balance : <%= @balance%> </div>
+    <div class="panel-body">Debt :  <%= @debt%> </div>
+    <div class="panel-body">Total: <%= Account.sum(:amount)%></div>
+  </div>
+</div>
+
+<h2>Records</h2>
+
+<div class="table-responsive">          
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+
+        <tbody>
+
+          <% @records.each do |record| %>
+            <tr>
+              <td><%= record.title %></td>
+              <td><%= record.date %></td>
+              <td><%= record.amount %></td>
+
+              <td><%= link_to 'Edit', edit_account_path(record), class: 'btn btn-sm btn-success' %></td>
+                <td>                    
+                  <%= link_to 'Delete', account_path(record), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "Are you sure?"} %>
+              </td>
+          <% end %>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Record Here</h4>
+          </div>
+          <%= simple_form_for Account.new do |f| %>
+            <div class="modal-body">
+              <%= f.input :title %>
+              <%= f.input :date %>
+              <%= f.input :amount %>
+            </div>      
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= f.submit 'Submit', class: 'btn btn-primary' %>
+            </div>
+         <% end %>
+      </div>
+    </div>
+</div>
+
+
+<div class = "text-center">
+  <%= will_paginate @records %>
+</div>
