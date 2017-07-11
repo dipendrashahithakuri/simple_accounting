@@ -56,7 +56,7 @@ class AccountsController < ApplicationController
 
 
     def account_params
-        params.require(:records).permit(:title,:date,:amount)
+        params.require(:record).permit(:title,:date,:amount)
     end 
 
 end
