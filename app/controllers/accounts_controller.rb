@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
 
     def index
       @account = Account.new
-      @records = Account.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @records = Account.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
       @balance=Account.balance
       @debt=Account.debt
       @total=Account.total
