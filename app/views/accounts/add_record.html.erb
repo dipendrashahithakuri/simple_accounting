@@ -1,0 +1,7 @@
+<%= simple_form_for Account.new, url: :accounts, method: 'POST' do |f| %>
+    <%= f.input :title %>
+    <%= f.input :date %>
+    <%= f.input :amount %>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+<% end %>

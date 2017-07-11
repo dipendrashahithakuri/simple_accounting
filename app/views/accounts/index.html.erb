@@ -39,31 +39,6 @@
 </div>
 
 
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add Record Here</h4>
-          </div>
-          <%= simple_form_for Account.new do |f| %>
-            <div class="modal-body">
-              <%= f.input :title %>
-              <%= f.input :date %>
-              <%= f.input :amount %>
-            </div>      
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <%= f.submit 'Submit', class: 'btn btn-primary' %>
-            </div>
-         <% end %>
-      </div>
-    </div>
-</div>
-
-
 <div class = "text-center">
   <%= will_paginate @records %>
 </div>
