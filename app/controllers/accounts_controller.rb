@@ -1,23 +1,21 @@
 class AccountsController < ApplicationController
-  
+
     def index
-        @records = Account.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
-        @balance=0
-        @debt=0
-        @records.each do |record|
-            if(record.amount>=0)
-                @balance += record.amount
-            elsif(record.amount<0)
-                @debt += record.amount
-            end
-        end
-              
+      @records = Account.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @balance=0
+      @debt=0
+      @records.each do |record|
+          if(record.amount>=0)
+              @balance += record.amount
+          elsif(record.amount<0)
+              @debt += record.amount
+          end
+      end
     end
-    
-    def create    
-        @record = Account.create(account_params)
-        
-        if @record.valid?
+
+    def create
+        @records = Account.create(account_params)
+        if @records.valid?
             flash[:success] = "Your Record has been posted!"
         else
             flash[:alert] = "Woops! Looks like there has been an error!"
@@ -26,7 +24,7 @@ class AccountsController < ApplicationController
     end
 
 
-    def edit 
+    def edit
         @record = Account.find(params[:id])
     end
 
@@ -52,11 +50,11 @@ class AccountsController < ApplicationController
     end
 
 
-    private 
+    private
 
 
     def account_params
         params.require(:record).permit(:title,:date,:amount)
-    end 
+    end
 
 end
